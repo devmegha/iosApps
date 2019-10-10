@@ -14,7 +14,6 @@
 		03E403B9234DFA8E00C1C9B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E403B7234DFA8E00C1C9B2 /* LaunchScreen.storyboard */; };
 		03E403C3234E00D500C1C9B2 /* PhoneBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E403C2234E00D500C1C9B2 /* PhoneBookViewController.swift */; };
 		03E403C5234E012100C1C9B2 /* AddContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E403C4234E012100C1C9B2 /* AddContactsViewController.swift */; };
-		03E403C7234E04E000C1C9B2 /* PhoneBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E403C6234E04E000C1C9B2 /* PhoneBook.swift */; };
 		03E4040F234E4D6200C1C9B2 /* ContactDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E4040E234E4D6200C1C9B2 /* ContactDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,7 +27,6 @@
 		03E403BA234DFA8E00C1C9B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03E403C2234E00D500C1C9B2 /* PhoneBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBookViewController.swift; sourceTree = "<group>"; };
 		03E403C4234E012100C1C9B2 /* AddContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactsViewController.swift; sourceTree = "<group>"; };
-		03E403C6234E04E000C1C9B2 /* PhoneBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneBook.swift; sourceTree = "<group>"; };
 		03E4040E234E4D6200C1C9B2 /* ContactDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,7 +65,6 @@
 				03E403C4234E012100C1C9B2 /* AddContactsViewController.swift */,
 				03E403C2234E00D500C1C9B2 /* PhoneBookViewController.swift */,
 				03E4040E234E4D6200C1C9B2 /* ContactDetailsViewController.swift */,
-				03E403C6234E04E000C1C9B2 /* PhoneBook.swift */,
 				03E403B5234DFA8E00C1C9B2 /* Assets.xcassets */,
 				03E403B7234DFA8E00C1C9B2 /* LaunchScreen.storyboard */,
 				03E403BA234DFA8E00C1C9B2 /* Info.plist */,
@@ -151,7 +148,6 @@
 				03E403C5234E012100C1C9B2 /* AddContactsViewController.swift in Sources */,
 				03E4040F234E4D6200C1C9B2 /* ContactDetailsViewController.swift in Sources */,
 				03E403AC234DFA8C00C1C9B2 /* AppDelegate.swift in Sources */,
-				03E403C7234E04E000C1C9B2 /* PhoneBook.swift in Sources */,
 				03E403B4234DFA8C00C1C9B2 /* iPhoneBook.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
