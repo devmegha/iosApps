@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Foundation
 
 class PhoneBookViewController: UITableViewController {
     
@@ -42,6 +43,51 @@ class PhoneBookViewController: UITableViewController {
         }
     }
     
+    //check if phone number or name belongs to any existing entries
+    func isDuplicateEntry(name: String, phoneNumber: String) -> Bool {
+        let numContacts = phoneBook.count
+        
+        print("number of contacts = \(numContacts)")
+        for index in stride(from: 0, to: numContacts, by:1) {
+            let tempName : String = phoneBook[index].value(forKey: "name") as! String
+            let tempNumber : String = phoneBook[index].value(forKey: "phoneNumber") as! String
+            //print("\(index), name = \(tempName), number = \(tempNumber)")
+            
+            if (tempName == name || tempNumber == phoneNumber) {
+                //print ("duplicate contact... skip..")
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    //check if entered phone number is valid
+    func isNumberValid(phoneNumber: String) -> Bool {
+        let phoneNum = Int(phoneNumber)
+        let numberLen = phoneNumber.count
+        
+        if (phoneNum == nil || numberLen != 10) {
+            return false
+        }
+        
+        return true
+    }
+    
+    
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        let alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow.rootViewController = UIViewController()
+        alertWindow.makeKeyAndVisible()
+        alertWindow.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
     func save(name: String, phoneNumber:String) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {return}
         let objectContext = appDelegate.persistentContainer.viewContext
@@ -49,9 +95,21 @@ class PhoneBookViewController: UITableViewController {
         let contact = NSManagedObject(entity: entity, insertInto: objectContext)
         contact.setValue(name, forKey: "name")
         contact.setValue(phoneNumber, forKey: "phoneNumber")
-        if objectContext.hasChanges {
-            print("name is \(name)")
+        
+        if isDuplicateEntry(name: name, phoneNumber: phoneNumber) {
+            showAlert(title: "Duplicate", message: "contact '\(name)' already exists with number '\(phoneNumber)'")
+            return
         }
+        
+        if (!isNumberValid(phoneNumber: phoneNumber)) {
+            showAlert(title: "Invalid number", message: "please enter valid number")
+            return
+        }
+        
+       // if objectContext.hasChanges {
+            //print("name is \(name)")
+            //print ("phone number is \(phoneNumber)")
+       // }
         do {
             try objectContext.save()
             self.phoneBook.append(contact)
@@ -67,6 +125,17 @@ class PhoneBookViewController: UITableViewController {
         
         contact.setValue(name, forKey: "name")
         contact.setValue(phoneNumber, forKey: "phoneNumber")
+        
+//        if isDuplicateEntry(name: name, phoneNumber: phoneNumber) {
+//            showAlert(title: "Duplicate", message: "contact '\(name)' already exists with number '\(phoneNumber)'")
+//            return
+//        }
+//
+        if (!isNumberValid(phoneNumber: phoneNumber)) {
+            showAlert(title: "Invalid number", message: "please enter valid number")
+            return
+        }
+        
         do {
             try objectContext.save()
             phoneBook[indexPath.row] = contact
@@ -118,7 +187,7 @@ class PhoneBookViewController: UITableViewController {
             
             guard let name = VC.nameTextField.text else {return}
             guard let phoneNumber = VC.phoneNumberTextField.text else {return}
-            print( "stage1")
+            //print( "stage1")
             if name != "" && phoneNumber != "" {
                 if let indexPath = VC.indexPathForContact {
                     update(indexPath: indexPath, name: name, phoneNumber: phoneNumber)
